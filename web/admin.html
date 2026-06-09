@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SpotSelf Admin</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/">
+        <img src="/assets/spotself_logo.svg" alt="SpotSelf">
+      </a>
+      <nav>
+        <a href="/" data-i18n="nav.guest">Guest</a>
+        <a href="/admin.html" data-i18n="nav.admin">Admin</a>
+      </nav>
+      <div class="controls" aria-label="Display controls">
+        <button class="small-button" type="button" data-lang="en">EN</button>
+        <button class="small-button" type="button" data-lang="tr">TR</button>
+        <button class="small-button" id="themeToggle" type="button">Dark</button>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section class="hero admin-hero">
+        <div>
+          <p class="eyebrow" data-i18n="admin.eyebrow">Admin console</p>
+          <h1 data-i18n="admin.title">Upload, index, and distribute event photos.</h1>
+          <p data-i18n="admin.copy">Create an event, upload images, then share the guest link with attendees.</p>
+        </div>
+      </section>
+
+      <section class="two-column">
+        <form id="eventForm" class="panel form">
+          <h2 data-i18n="admin.create">Create event</h2>
+          <label>
+            <span data-i18n="admin.eventName">Event name</span>
+            <input id="eventName" type="text" placeholder="Istanbul Summer Wedding" data-i18n-placeholder="admin.eventNamePlaceholder" required>
+          </label>
+          <label>
+            <span data-i18n="admin.watermark">Watermark text</span>
+            <input id="watermark" type="text" placeholder="Optional" data-i18n-placeholder="admin.optional">
+          </label>
+          <label>
+            <span data-i18n="admin.retention">Retention days</span>
+            <input id="retention" type="number" min="1" value="30">
+          </label>
+          <button type="submit" data-i18n="admin.create">Create event</button>
+        </form>
+
+        <form id="uploadForm" class="panel form">
+          <h2 data-i18n="admin.upload">Upload photos</h2>
+          <label>
+            <span data-i18n="guest.event">Event</span>
+            <select id="adminEventSelect" required></select>
+          </label>
+          <label>
+            <span data-i18n="admin.photos">Photos</span>
+            <input id="photosInput" type="file" name="photos" multiple accept="image/png,image/jpeg,image/gif" required>
+          </label>
+          <button type="submit" data-i18n="admin.uploadButton">Upload and index</button>
+          <p id="uploadStatus" class="muted"></p>
+        </form>
+      </section>
+
+      <section class="panel ops-panel">
+        <div>
+          <h2 data-i18n="admin.operations">Operations</h2>
+          <p id="statsLine" class="muted"></p>
+        </div>
+        <label class="token-field">
+          <span data-i18n="admin.apiToken">Admin API token</span>
+          <input id="adminToken" type="password" autocomplete="off">
+        </label>
+        <button id="saveToken" type="button" data-i18n="admin.saveToken">Save token</button>
+        <button id="purgeExpired" type="button" data-i18n="admin.purge">Purge expired</button>
+        <p id="opsStatus" class="muted"></p>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <h2 data-i18n="admin.events">Events</h2>
+          <p id="eventStatus"></p>
+        </div>
+        <div id="events" class="event-list"></div>
+      </section>
+    </main>
+
+    <script src="/common.js"></script>
+    <script src="/admin.js"></script>
+  </body>
+</html>

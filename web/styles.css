@@ -1,0 +1,390 @@
+:root {
+  color-scheme: light;
+  --bg: #f7f8fa;
+  --panel: #ffffff;
+  --ink: #101828;
+  --muted: #667085;
+  --line: #d0d5dd;
+  --brand: #155eef;
+  --brand-dark: #1249bb;
+  --ok: #067647;
+  --shadow: rgba(16, 24, 40, 0.06);
+  --topbar: rgba(255, 255, 255, 0.92);
+  --field: #ffffff;
+  --soft: #f2f4f7;
+  --logo-filter: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0b0f17;
+    --panel: #121826;
+    --ink: #f8fafc;
+    --muted: #98a2b3;
+    --line: #263244;
+    --brand: #6ea8fe;
+    --brand-dark: #4c8df6;
+    --ok: #47cd89;
+    --shadow: rgba(0, 0, 0, 0.28);
+    --topbar: rgba(18, 24, 38, 0.92);
+    --field: #0f1724;
+    --soft: #1d2939;
+    --logo-filter: invert(1) brightness(1.8);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0b0f17;
+  --panel: #121826;
+  --ink: #f8fafc;
+  --muted: #98a2b3;
+  --line: #263244;
+  --brand: #6ea8fe;
+  --brand-dark: #4c8df6;
+  --ok: #47cd89;
+  --shadow: rgba(0, 0, 0, 0.28);
+  --topbar: rgba(18, 24, 38, 0.92);
+  --field: #0f1724;
+  --soft: #1d2939;
+  --logo-filter: invert(1) brightness(1.8);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px clamp(16px, 5vw, 56px);
+  border-bottom: 1px solid var(--line);
+  background: var(--topbar);
+  backdrop-filter: blur(12px);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  min-width: 150px;
+}
+
+.brand img {
+  display: block;
+  width: 150px;
+  height: auto;
+  filter: var(--logo-filter);
+}
+
+nav {
+  display: flex;
+  gap: 18px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.small-button {
+  width: auto;
+  min-height: 34px;
+  border: 1px solid var(--line);
+  padding: 6px 10px;
+  background: var(--field);
+  color: var(--ink);
+  font-size: 0.82rem;
+  box-shadow: none;
+}
+
+.small-button:hover,
+.small-button.active {
+  border-color: var(--brand);
+  background: var(--brand);
+  color: #fff;
+}
+
+.shell {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0 64px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 32px;
+  align-items: center;
+  min-height: 260px;
+}
+
+.admin-hero {
+  grid-template-columns: 1fr;
+}
+
+.eyebrow {
+  color: var(--brand);
+  font-weight: 800;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+h1,
+h2 {
+  margin: 0;
+  line-height: 1.05;
+}
+
+h1 {
+  max-width: 760px;
+  font-size: clamp(2.2rem, 5vw, 4.8rem);
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+.hero p:not(.eyebrow) {
+  max-width: 640px;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.6;
+}
+
+.status-card,
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: 0 16px 36px var(--shadow);
+}
+
+.status-card {
+  display: grid;
+  place-items: center;
+  min-height: 170px;
+}
+
+.status-card span {
+  color: var(--brand);
+  font-size: 4rem;
+  font-weight: 900;
+}
+
+.status-card small,
+.muted,
+.section-title p {
+  color: var(--muted);
+}
+
+.panel {
+  padding: 22px;
+}
+
+.form {
+  display: grid;
+  gap: 16px;
+}
+
+label {
+  display: grid;
+  gap: 7px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+input,
+select,
+button {
+  width: 100%;
+  min-height: 44px;
+  border-radius: 8px;
+  font: inherit;
+}
+
+input,
+select {
+  border: 1px solid var(--line);
+  padding: 10px 12px;
+  background: var(--field);
+  color: var(--ink);
+}
+
+button {
+  border: 0;
+  padding: 11px 16px;
+  background: var(--brand);
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--brand-dark);
+}
+
+.link-button {
+  width: auto;
+  min-height: auto;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--brand);
+  font-weight: 800;
+  text-align: left;
+}
+
+.link-button:hover {
+  background: transparent;
+  color: var(--brand-dark);
+}
+
+.link-button.danger {
+  color: #d92d20;
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.ops-panel {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(180px, 260px) auto auto;
+  gap: 14px;
+  align-items: end;
+  margin-top: 18px;
+}
+
+.ops-panel h2,
+.ops-panel p {
+  margin: 0;
+}
+
+.token-field {
+  min-width: 0;
+}
+
+.section-title {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 34px 0 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 18px;
+}
+
+.photo-card,
+.event-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.photo-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.photo-card div,
+.event-card {
+  padding: 14px;
+}
+
+.score {
+  color: var(--ok);
+  font-weight: 800;
+}
+
+.event-list {
+  display: grid;
+  gap: 12px;
+}
+
+.event-card {
+  display: grid;
+  gap: 10px;
+}
+
+.event-card code {
+  display: block;
+  overflow-wrap: anywhere;
+  padding: 10px;
+  border-radius: 8px;
+  background: var(--soft);
+}
+
+.event-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.event-actions a {
+  color: var(--brand);
+  font-weight: 800;
+}
+
+@media (max-width: 760px) {
+  .topbar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+  }
+
+  nav {
+    grid-column: 1 / -1;
+    order: 3;
+  }
+
+  .controls {
+    justify-content: end;
+  }
+
+  .hero,
+  .two-column,
+  .ops-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .status-card {
+    min-height: 130px;
+  }
+
+  .section-title {
+    display: block;
+  }
+}

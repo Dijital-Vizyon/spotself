@@ -1,0 +1,7 @@
+data/
+/spotself
+/spotselfctl
+*.test
+.cache/
+.DS_Store
+.env
